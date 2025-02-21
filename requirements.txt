@@ -15,6 +15,6 @@ pandas
 scipy
 statsmodels
 psutil
-pandasai==3.0.0b10
+pandasai
 watchdog==4.0.2
 libomp
