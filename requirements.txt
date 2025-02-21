@@ -17,4 +17,3 @@ statsmodels
 psutil
 pandasai>=2.0.0
 watchdog==4.0.2
-libomp
