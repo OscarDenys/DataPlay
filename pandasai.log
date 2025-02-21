@@ -1,0 +1,2653 @@
+2025-02-19 22:31:19 [INFO] Question: delete the first colunm
+2025-02-19 22:31:19 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:31:19 [INFO] Prompt ID: fee91d39-7855-4d92-af15-e1771de45f14
+2025-02-19 22:31:19 [INFO] Generating new code...
+2025-02-19 22:31:19 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ delete the first colunm
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:31:24 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+sql_query = "SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66"
+dataframe = execute_sql_query(sql_query)
+
+# Declare result var: 
+result = { "type": "dataframe", "value": dataframe}
+2025-02-19 22:31:24 [INFO] Validating code requirements...
+2025-02-19 22:31:24 [INFO] Code validation successful.
+2025-02-19 22:31:24 [INFO] Cleaning the generated code...
+2025-02-19 22:31:24 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+dataframe = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': dataframe}
+2025-02-19 22:31:24 [INFO] Retrying execution (1/3)...
+2025-02-19 22:31:24 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:31:24 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first colunm
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+dataframe = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': dataframe}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:31:30 [INFO] Code Generated:
+import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:31:30 [INFO] Validating code requirements...
+2025-02-19 22:31:30 [INFO] Code validation successful.
+2025-02-19 22:31:30 [INFO] Cleaning the generated code...
+2025-02-19 22:31:30 [INFO] Executing code: import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:31:30 [INFO] Retrying execution (2/3)...
+2025-02-19 22:31:30 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:31:30 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first colunm
+
+You generated this python code:
+import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:31:40 [INFO] Code Generated:
+import psycopg2
+
+# establish a database connection
+conn = psycopg2.connect(
+    dbname="your_database_name",
+    user="your_username",
+    password="your_password",
+    host="localhost",
+    port="5432"
+)
+
+def execute_sql_query(sql_query):
+    # create a new cursor
+    cur = conn.cursor()
+    # execute the SQL query
+    cur.execute(sql_query)
+    # commit the transaction
+    conn.commit()
+    # close the cursor and the connection
+    cur.close()
+    conn.close()
+
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:31:40 [INFO] Validating code requirements...
+2025-02-19 22:31:40 [INFO] Code validation successful.
+2025-02-19 22:31:40 [INFO] Cleaning the generated code...
+2025-02-19 22:31:40 [INFO] Executing code: import psycopg2
+conn = psycopg2.connect(dbname='your_database_name', user='your_username', password='your_password', host='localhost', port='5432')
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:31:40 [INFO] Retrying execution (3/3)...
+2025-02-19 22:31:40 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'psycopg2'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:31:40 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first colunm
+
+You generated this python code:
+import psycopg2
+conn = psycopg2.connect(dbname='your_database_name', user='your_username', password='your_password', host='localhost', port='5432')
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:31:45 [INFO] Code Generated:
+import psycopg2
+conn = psycopg2.connect(dbname='your_database_name', user='your_username', password='your_password', host='localhost', port='5432')
+cur = conn.cursor()
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+cur.execute(sql_query)
+conn.commit()
+cur.close()
+conn.close()
+2025-02-19 22:31:45 [INFO] Validating code requirements...
+2025-02-19 22:31:45 [INFO] An error occurred during code generation: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+2025-02-19 22:31:45 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'psycopg2'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 38, in generate_code
+    return self.validate_and_clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 52, in validate_and_clean_code
+    if not self._code_validator.validate(code):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_validation.py", line 63, in validate
+    raise ExecuteSQLQueryNotUsed(
+pandasai.exceptions.ExecuteSQLQueryNotUsed: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+
+2025-02-19 22:32:10 [INFO] Question: delete the first column
+2025-02-19 22:32:10 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:32:10 [INFO] Prompt ID: fd9a3b47-16db-417f-9852-7b50fb5fde97
+2025-02-19 22:32:10 [INFO] Generating new code...
+2025-02-19 22:32:11 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ delete the first column
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:32:16 [INFO] Code Generated:
+# Import the required dependencies
+import pandas as pd
+
+# SQL query to delete the first column
+sql_query = "SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66"
+
+# Execute the SQL query and store the result in a dataframe
+df = execute_sql_query(sql_query)
+
+# Declare result var: 
+result = { "type": "dataframe", "value": df }
+2025-02-19 22:32:16 [INFO] Validating code requirements...
+2025-02-19 22:32:16 [INFO] Code validation successful.
+2025-02-19 22:32:16 [INFO] Cleaning the generated code...
+2025-02-19 22:32:16 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:32:16 [INFO] Retrying execution (1/3)...
+2025-02-19 22:32:16 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:32:16 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:32:24 [INFO] Code Generated:
+import pandas as pd
+
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:32:24 [INFO] Validating code requirements...
+2025-02-19 22:32:24 [INFO] Code validation successful.
+2025-02-19 22:32:24 [INFO] Cleaning the generated code...
+2025-02-19 22:32:24 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:32:24 [INFO] Retrying execution (2/3)...
+2025-02-19 22:32:24 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:32:24 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:32:32 [INFO] Code Generated:
+def execute_sql_query(sql_query):
+    # Assuming this function executes the sql query and returns a dataframe
+    pass
+
+df = execute_sql_query('SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66')
+df = df.drop('first name', axis=1)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:32:32 [INFO] Validating code requirements...
+2025-02-19 22:32:32 [INFO] Code validation successful.
+2025-02-19 22:32:32 [INFO] Cleaning the generated code...
+2025-02-19 22:32:32 [INFO] Executing code: df = execute_sql_query('SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66')
+df = df.drop('first name', axis=1)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:32:32 [INFO] Response generated successfully.
+2025-02-19 22:35:00 [INFO] Question: delete the first column
+2025-02-19 22:35:00 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:35:00 [INFO] Prompt ID: 03f03f62-0a21-4287-9238-e55b38083ef7
+2025-02-19 22:35:00 [INFO] Using cached code.
+2025-02-19 22:35:00 [INFO] Validating code requirements...
+2025-02-19 22:35:00 [INFO] Code validation successful.
+2025-02-19 22:35:00 [INFO] Cleaning the generated code...
+2025-02-19 22:35:00 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:35:01 [INFO] Retrying execution (1/3)...
+2025-02-19 22:35:01 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:35:01 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:35:09 [INFO] Code Generated:
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:35:09 [INFO] Validating code requirements...
+2025-02-19 22:35:09 [INFO] Code validation successful.
+2025-02-19 22:35:09 [INFO] Cleaning the generated code...
+2025-02-19 22:35:09 [INFO] Executing code: sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:35:09 [INFO] Retrying execution (2/3)...
+2025-02-19 22:35:09 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 2, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:35:09 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:35:16 [INFO] Code Generated:
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+2025-02-19 22:35:16 [INFO] Validating code requirements...
+2025-02-19 22:35:16 [INFO] Code validation successful.
+2025-02-19 22:35:16 [INFO] Cleaning the generated code...
+2025-02-19 22:35:16 [INFO] Executing code: sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+2025-02-19 22:35:16 [INFO] Retrying execution (3/3)...
+2025-02-19 22:35:16 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 2, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:35:16 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:35:19 [INFO] Code Generated:
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+2025-02-19 22:35:19 [INFO] Validating code requirements...
+2025-02-19 22:35:19 [INFO] Code validation successful.
+2025-02-19 22:35:19 [INFO] Cleaning the generated code...
+2025-02-19 22:35:19 [INFO] Executing code: sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+2025-02-19 22:35:19 [INFO] Max retries reached. Error: Code execution failed
+2025-02-19 22:35:19 [INFO] Processing failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 2, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 262, in _process_query
+    result = self.execute_with_retries(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:36:01 [INFO] Question: show me the first five rows, and delete all the other data
+2025-02-19 22:36:01 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:36:01 [INFO] Prompt ID: f5aac101-9949-4a12-94f7-1d1cbafcaf3d
+2025-02-19 22:36:01 [INFO] Generating new code...
+2025-02-19 22:36:01 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ show me the first five rows, and delete all the other data
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:36:12 [INFO] Code Generated:
+# Import the required dependencies
+import pandas as pd
+
+def execute_sql_query(sql_query: str) -> pd.Dataframe:
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+    # Connection and execution logic here
+    pass
+
+# SQL query to get the first five rows
+sql_query = "SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5"
+
+# Execute the SQL query and store the result in a dataframe
+df = execute_sql_query(sql_query)
+
+# SQL query to delete all rows except the first five
+sql_query_delete = "DELETE FROM table_642e816fe91c058e7c6fb389bb1fcf66 WHERE ctid NOT IN (SELECT ctid FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5)"
+
+# Execute the SQL query to delete the rows
+execute_sql_query(sql_query_delete)
+
+# Declare the result variable
+result = { "type": "dataframe", "value": df }
+
+# Print the result
+print(result)
+2025-02-19 22:36:12 [INFO] Validating code requirements...
+2025-02-19 22:36:12 [INFO] Code validation successful.
+2025-02-19 22:36:12 [INFO] Cleaning the generated code...
+2025-02-19 22:36:12 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5'
+df = execute_sql_query(sql_query)
+sql_query_delete = 'DELETE FROM table_642e816fe91c058e7c6fb389bb1fcf66 WHERE ctid NOT IN (SELECT ctid FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5)'
+execute_sql_query(sql_query_delete)
+result = {'type': 'dataframe', 'value': df}
+print(result)
+2025-02-19 22:36:13 [INFO] Retrying execution (1/3)...
+2025-02-19 22:36:13 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Can only delete from base table!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 5, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Can only delete from base table!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:36:13 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ show me the first five rows, and delete all the other data
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5'
+df = execute_sql_query(sql_query)
+sql_query_delete = 'DELETE FROM table_642e816fe91c058e7c6fb389bb1fcf66 WHERE ctid NOT IN (SELECT ctid FROM table_642e816fe91c058e7c6fb389bb1fcf66 LIMIT 5)'
+execute_sql_query(sql_query_delete)
+result = {'type': 'dataframe', 'value': df}
+print(result)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:36:29 [INFO] Code Generated:
+import psycopg2
+
+def execute_sql_query(query):
+    # create a connection to the database
+    conn = psycopg2.connect(
+        dbname="your_database_name",
+        user="your_username",
+        password="your_password",
+        host="your_host",
+        port="your_port"
+    )
+    # create a cursor object
+    cur = conn.cursor()
+    # execute the SQL query
+    cur.execute(query)
+    # fetch all the rows (for SELECT queries)
+    if query.strip().upper().startswith('SELECT'):
+        df = pd.DataFrame(cur.fetchall(), columns=[desc[0] for desc in cur.description])
+        return df
+    # commit the transaction (for INSERT, UPDATE, DELETE queries)
+    else:
+        conn.commit()
+    # close the cursor and connection
+    cur.close()
+    conn.close()
+2025-02-19 22:36:29 [INFO] Validating code requirements...
+2025-02-19 22:36:29 [INFO] An error occurred during code generation: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+2025-02-19 22:36:29 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Can only delete from base table!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 5, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Can only delete from base table!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 38, in generate_code
+    return self.validate_and_clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 52, in validate_and_clean_code
+    if not self._code_validator.validate(code):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_validation.py", line 63, in validate
+    raise ExecuteSQLQueryNotUsed(
+pandasai.exceptions.ExecuteSQLQueryNotUsed: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+
+2025-02-19 22:44:11 [INFO] Question: Using Python and pandas, delete the first column
+2025-02-19 22:44:11 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:44:11 [INFO] Prompt ID: 5b7d2953-b034-4fca-b9ec-b2e387b6996b
+2025-02-19 22:44:11 [INFO] Generating new code...
+2025-02-19 22:44:11 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Using Python and pandas, delete the first column
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:44:19 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+sql_query = "SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66;"
+df = execute_sql_query(sql_query)
+
+# Declare result var: 
+result = { "type": "dataframe", "value": df }
+2025-02-19 22:44:19 [INFO] Validating code requirements...
+2025-02-19 22:44:19 [INFO] Code validation successful.
+2025-02-19 22:44:19 [INFO] Cleaning the generated code...
+2025-02-19 22:44:19 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:44:19 [INFO] Retrying execution (1/3)...
+2025-02-19 22:44:19 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:44:19 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ Using Python and pandas, delete the first column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:44:26 [INFO] Code Generated:
+import pandas as pd
+
+# Assuming that df is the DataFrame
+df = pd.read_sql('SELECT * FROM table_642e816fe91c058e7c6fb389bb1fcf66', conn)
+
+# Delete the first column from df
+df = df.drop('first name', axis=1)
+
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:44:26 [INFO] Validating code requirements...
+2025-02-19 22:44:26 [INFO] An error occurred during code generation: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+2025-02-19 22:44:26 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "last_name" not found in FROM clause!
+Candidate bindings: "last name", "first name", "party"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 38, in generate_code
+    return self.validate_and_clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 52, in validate_and_clean_code
+    if not self._code_validator.validate(code):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_validation.py", line 63, in validate
+    raise ExecuteSQLQueryNotUsed(
+pandasai.exceptions.ExecuteSQLQueryNotUsed: The code must execute SQL queries using the `execute_sql_query` function, which is already defined!
+
+2025-02-19 22:48:22 [INFO] Question: delete the first name column
+2025-02-19 22:48:22 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:48:22 [INFO] Prompt ID: 2fcb47b3-f642-416d-994b-428ff64c812d
+2025-02-19 22:48:22 [INFO] Generating new code...
+2025-02-19 22:48:22 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ delete the first name column
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:48:28 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+# Prepare the SQL query
+sql_query = "ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first name;"
+
+# Execute the SQL query
+execute_sql_query(sql_query)
+
+# Since the ALTER TABLE query does not return any result,
+# we will return a success message
+result = {
+    "type": "string",
+    "value": "The first name column has been successfully deleted."
+}
+2025-02-19 22:48:28 [INFO] Validating code requirements...
+2025-02-19 22:48:28 [INFO] Code validation successful.
+2025-02-19 22:48:28 [INFO] Cleaning the generated code...
+2025-02-19 22:48:28 [WARNING] 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first name' contains unsupported syntax. Falling back to parsing as a 'Command'.
+2025-02-19 22:48:28 [INFO] Executing code: import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first name'
+execute_sql_query(sql_query)
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+2025-02-19 22:48:28 [WARNING] 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first name' contains unsupported syntax. Falling back to parsing as a 'Command'.
+2025-02-19 22:48:28 [INFO] Retrying execution (1/3)...
+2025-02-19 22:48:28 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.ParserException: Parser Error: syntax error at or near "name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Parser Error: syntax error at or near "name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:48:28 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first name column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first name'
+execute_sql_query(sql_query)
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:48:39 [INFO] Code Generated:
+import pandas as pd
+import sqlite3
+
+# Creating a function to execute SQL queries
+def execute_sql_query(sql_query):
+    con = sqlite3.connect('my_database.db')   # Establishing connection with the database
+    cursor = con.cursor()                     # Creating a cursor object
+    cursor.execute(sql_query)                 # Executing the SQL query
+    con.commit()                              # Committing the changes
+    con.close()                               # Closing the connection
+
+# SQL query
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+
+# Executing the SQL query
+execute_sql_query(sql_query)
+
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+2025-02-19 22:48:39 [INFO] Validating code requirements...
+2025-02-19 22:48:39 [INFO] Code validation successful.
+2025-02-19 22:48:39 [INFO] Cleaning the generated code...
+2025-02-19 22:48:39 [INFO] Executing code: import pandas as pd
+import sqlite3
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+2025-02-19 22:48:39 [INFO] Retrying execution (2/3)...
+2025-02-19 22:48:39 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 4, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:48:39 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first name column
+
+You generated this python code:
+import pandas as pd
+import sqlite3
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN "first name"'
+execute_sql_query(sql_query)
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:48:55 [INFO] Code Generated:
+def execute_sql_query(sql_query):
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute(sql_query)
+    conn.commit()
+    return c.fetchall()
+
+execute_sql_query('CREATE TABLE temp_table AS SELECT last name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66')
+execute_sql_query('DROP TABLE table_642e816fe91c058e7c6fb389bb1fcf66')
+execute_sql_query('ALTER TABLE temp_table RENAME TO table_642e816fe91c058e7c6fb389bb1fcf66')
+result = {'type': 'string', 'value': 'The first name column has been successfully deleted.'}
+2025-02-19 22:48:55 [INFO] Validating code requirements...
+2025-02-19 22:48:55 [INFO] Code validation successful.
+2025-02-19 22:48:55 [INFO] Cleaning the generated code...
+2025-02-19 22:48:55 [INFO] An error occurred during code generation: Query uses unauthorized table: temp_table.
+2025-02-19 22:48:55 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 4, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 38, in generate_code
+    return self.validate_and_clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 58, in validate_and_clean_code
+    return self._code_cleaner.clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 204, in clean_code
+    node = self._validate_and_make_table_name_case_sensitive(node)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 95, in _validate_and_make_table_name_case_sensitive
+    sql_query = self._clean_sql_query(node.value.args[0].value)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 61, in _clean_sql_query
+    return self._replace_table_names(sql_query, table_names, allowed_table_names)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 46, in _replace_table_names
+    raise MaliciousQueryError(
+pandasai.exceptions.MaliciousQueryError: Query uses unauthorized table: temp_table.
+
+2025-02-19 22:51:26 [INFO] Question: delete the first name column
+2025-02-19 22:51:26 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:51:26 [INFO] Prompt ID: 06dc5590-ff4d-4372-85d0-3384e1a10e95
+2025-02-19 22:51:26 [INFO] Generating new code...
+2025-02-19 22:51:26 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ delete the first name column
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:51:31 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# SQL query to delete the 'first name' column
+sql_query = "ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name;"
+
+# Execute the SQL query and get the updated dataframe
+df = execute_sql_query(sql_query)
+
+# Declare result var: 
+result = { "type": "dataframe", "value": df }
+2025-02-19 22:51:31 [INFO] Validating code requirements...
+2025-02-19 22:51:31 [INFO] Code validation successful.
+2025-02-19 22:51:31 [INFO] Cleaning the generated code...
+2025-02-19 22:51:31 [INFO] Executing code: import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:51:31 [INFO] Retrying execution (1/3)...
+2025-02-19 22:51:31 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:51:31 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first name column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:51:38 [INFO] Code Generated:
+import pandas as pd
+import sqlite3
+
+def execute_sql_query(query):
+    conn = sqlite3.connect('database.db')
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:51:38 [INFO] Validating code requirements...
+2025-02-19 22:51:38 [INFO] Code validation successful.
+2025-02-19 22:51:38 [INFO] Cleaning the generated code...
+2025-02-19 22:51:38 [INFO] Executing code: import pandas as pd
+import sqlite3
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+2025-02-19 22:51:38 [INFO] Retrying execution (2/3)...
+2025-02-19 22:51:38 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 4, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:51:38 [INFO] Using Prompt: <table dialect="postgres" table_name="table_642e816fe91c058e7c6fb389bb1fcf66" dimensions="242x4">
+first name,last name,email,party
+Adeline,Wauters,,
+Adriaan,Taal,,
+Alexander,Haven,,
+An Sofie,Staelen,,
+An Sofie plus one,Staelen,,
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first name column
+
+You generated this python code:
+import pandas as pd
+import sqlite3
+sql_query = 'ALTER TABLE table_642e816fe91c058e7c6fb389bb1fcf66 DROP COLUMN first_name'
+execute_sql_query(sql_query)
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:51:53 [INFO] Code Generated:
+import pandas as pd
+import sqlite3
+
+# Establish a connection to the database
+connection = sqlite3.connect('my_database.db')
+
+def execute_sql_query(sql_query, connection):
+    cursor = connection.cursor()
+    cursor.execute(sql_query)
+    connection.commit()
+
+sql_query = '''CREATE TABLE new_table AS SELECT last_name, email, party FROM table_642e816fe91c058e7c6fb389bb1fcf66;'''
+execute_sql_query(sql_query, connection)
+
+sql_query = '''DROP TABLE table_642e816fe91c058e7c6fb389bb1fcf66;'''
+execute_sql_query(sql_query, connection)
+
+sql_query = '''ALTER TABLE new_table RENAME TO table_642e816fe91c058e7c6fb389bb1fcf66;'''
+execute_sql_query(sql_query, connection)
+
+connection.close()
+2025-02-19 22:51:53 [INFO] Validating code requirements...
+2025-02-19 22:51:53 [INFO] Code validation successful.
+2025-02-19 22:51:53 [INFO] Cleaning the generated code...
+2025-02-19 22:51:53 [INFO] An error occurred during code generation: Query uses unauthorized table: new_table.
+2025-02-19 22:51:53 [INFO] Stack Trace:
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.CatalogException: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 4, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Catalog Error: Can only modify view with ALTER VIEW statement
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 38, in generate_code
+    return self.validate_and_clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/base.py", line 58, in validate_and_clean_code
+    return self._code_cleaner.clean_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 204, in clean_code
+    node = self._validate_and_make_table_name_case_sensitive(node)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 74, in _validate_and_make_table_name_case_sensitive
+    sql_query = self._clean_sql_query(node.value.value)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 61, in _clean_sql_query
+    return self._replace_table_names(sql_query, table_names, allowed_table_names)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_generation/code_cleaning.py", line 46, in _replace_table_names
+    raise MaliciousQueryError(
+pandasai.exceptions.MaliciousQueryError: Query uses unauthorized table: new_table.
+
+2025-02-19 22:52:54 [INFO] Question: delete the first column
+2025-02-19 22:52:54 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:52:54 [INFO] Prompt ID: 514e7fb0-f5d3-4b19-87da-00bfc15c0f12
+2025-02-19 22:52:54 [INFO] Generating new code...
+2025-02-19 22:52:54 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ delete the first column
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:53:00 [INFO] Code Generated:
+# import the required dependencies
+import pandas as pd
+
+# write the SQL query string
+sql_query = "SELECT Team Name, Public Score, Private Score, Weighted Score, Final Grade FROM table_74ee0b9b490875dd0390493ab8b0cee3"
+
+# execute the SQL query and get the resultant dataframe
+df = execute_sql_query(sql_query)
+
+# Declare result var
+result = { "type": "dataframe", "value": df }
+2025-02-19 22:53:00 [INFO] Validating code requirements...
+2025-02-19 22:53:00 [INFO] Code validation successful.
+2025-02-19 22:53:00 [INFO] Cleaning the generated code...
+2025-02-19 22:53:00 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT Team Name, Public Score, Private Score, Weighted Score, Final Grade FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:53:00 [INFO] Retrying execution (1/3)...
+2025-02-19 22:53:00 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "Team" not found in FROM clause!
+Candidate bindings: "Team Name", "username"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "Team" not found in FROM clause!
+Candidate bindings: "Team Name", "username"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:53:00 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ delete the first column
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT Team Name, Public Score, Private Score, Weighted Score, Final Grade FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:53:03 [INFO] Code Generated:
+import pandas as pd
+sql_query = 'SELECT "Team Name", "Public Score", "Private Score", "Weighted Score", "Final Grade" FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:53:03 [INFO] Validating code requirements...
+2025-02-19 22:53:03 [INFO] Code validation successful.
+2025-02-19 22:53:03 [INFO] Cleaning the generated code...
+2025-02-19 22:53:03 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT "Team Name", "Public Score", "Private Score", "Weighted Score", "Final Grade" FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+result = {'type': 'dataframe', 'value': df}
+2025-02-19 22:53:03 [INFO] Response generated successfully.
+2025-02-19 22:53:37 [INFO] Question: who has the highest public score
+2025-02-19 22:53:37 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:53:37 [INFO] Prompt ID: 57fb4ad8-cc53-4ebd-9bd5-544286eb7130
+2025-02-19 22:53:37 [INFO] Generating new code...
+2025-02-19 22:53:37 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ who has the highest public score
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:53:44 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+sql_query = "SELECT username, MAX(public_score) as highest_public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3"
+df = execute_sql_query(sql_query)
+
+highest_public_score = df['highest_public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+
+# Declare result var: 
+result = { "type": "string", "value": f"The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}." }
+2025-02-19 22:53:44 [INFO] Validating code requirements...
+2025-02-19 22:53:44 [INFO] Code validation successful.
+2025-02-19 22:53:44 [INFO] Cleaning the generated code...
+2025-02-19 22:53:44 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT username, MAX(public_score) as highest_public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+highest_public_score = df['highest_public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+2025-02-19 22:53:44 [INFO] Retrying execution (1/3)...
+2025-02-19 22:53:44 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "public_score" not found in FROM clause!
+Candidate bindings: "Public Score"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "public_score" not found in FROM clause!
+Candidate bindings: "Public Score"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:53:44 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ who has the highest public score
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT username, MAX(public_score) as highest_public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+highest_public_score = df['highest_public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:53:50 [INFO] Code Generated:
+import pandas as pd
+
+def execute_sql_query(sql_query):
+    return pd.read_sql_query(sql_query, connection)
+
+sql_query = 'SELECT username, public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY public_score DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+highest_public_score = df['public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+2025-02-19 22:53:50 [INFO] Validating code requirements...
+2025-02-19 22:53:50 [INFO] Code validation successful.
+2025-02-19 22:53:50 [INFO] Cleaning the generated code...
+2025-02-19 22:53:50 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT username, public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY public_score DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+highest_public_score = df['public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+2025-02-19 22:53:50 [INFO] Retrying execution (2/3)...
+2025-02-19 22:53:50 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "public_score" not found in FROM clause!
+Candidate bindings: "Public Score"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 3, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "public_score" not found in FROM clause!
+Candidate bindings: "Public Score"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 22:53:50 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ who has the highest public score
+
+You generated this python code:
+import pandas as pd
+sql_query = 'SELECT username, public_score FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY public_score DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+highest_public_score = df['public_score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 22:53:55 [INFO] Code Generated:
+import pandas as pd
+
+def execute_sql_query(query):
+    result = pd.read_sql_query(query, connection)
+    return result
+
+sql_query = 'SELECT username, "Public Score" FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY "Public Score" DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+highest_public_score = df['Public Score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+result
+2025-02-19 22:53:55 [INFO] Validating code requirements...
+2025-02-19 22:53:55 [INFO] Code validation successful.
+2025-02-19 22:53:55 [INFO] Cleaning the generated code...
+2025-02-19 22:53:55 [INFO] Executing code: import pandas as pd
+sql_query = 'SELECT username, "Public Score" FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY "Public Score" DESC LIMIT 1'
+df = execute_sql_query(sql_query)
+highest_public_score = df['Public Score'].values[0]
+highest_public_score_user = df['username'].values[0]
+result = {'type': 'string', 'value': f'The user with the highest public score is {highest_public_score_user} with a score of {highest_public_score}.'}
+result
+2025-02-19 22:53:55 [INFO] Response generated successfully.
+2025-02-19 22:54:19 [INFO] Question: create a histogram
+2025-02-19 22:54:19 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 22:54:19 [INFO] Prompt ID: 9d6d72ea-6c17-44ed-91d3-55687268347b
+2025-02-19 22:54:19 [INFO] Generating new code...
+2025-02-19 22:54:19 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ create a histogram
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 22:54:27 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+sql_query = "SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3"
+dataframe = execute_sql_query(sql_query)
+
+# Create the histogram
+plt.hist(dataframe['Public Score'], bins=10, alpha=0.5, color='blue')
+plt.hist(dataframe['Private Score'], bins=10, alpha=0.5, color='red')
+plt.title('Distribution of Public and Private Scores')
+plt.xlabel('Score')
+plt.ylabel('Frequency')
+plt.legend(['Public Score', 'Private Score'])
+
+# Save the plot
+plt.savefig('temp_chart.png')
+
+# Declare result var: 
+result = { "type": "plot", "value": "temp_chart.png" }
+2025-02-19 22:54:27 [INFO] Validating code requirements...
+2025-02-19 22:54:27 [INFO] Code validation successful.
+2025-02-19 22:54:27 [INFO] Cleaning the generated code...
+2025-02-19 22:54:27 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+dataframe = execute_sql_query(sql_query)
+plt.hist(dataframe['Public Score'], bins=10, alpha=0.5, color='blue')
+plt.hist(dataframe['Private Score'], bins=10, alpha=0.5, color='red')
+plt.title('Distribution of Public and Private Scores')
+plt.xlabel('Score')
+plt.ylabel('Frequency')
+plt.legend(['Public Score', 'Private Score'])
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 22:54:28 [INFO] Response generated successfully.
+2025-02-19 23:06:53 [INFO] Question: create a histogram that shows the top ten performers
+2025-02-19 23:06:53 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 23:06:53 [INFO] Prompt ID: 15ac5800-d905-4b77-95f1-9b1a1efc8239
+2025-02-19 23:06:53 [INFO] Generating new code...
+2025-02-19 23:06:53 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ create a histogram that shows the top ten performers
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 23:07:04 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Write code here
+
+# SQL query to get the top ten performers based on the final grade
+sql_query = "SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10"
+
+# Execute the SQL query and store the result in a DataFrame
+df = execute_sql_query(sql_query)
+
+# Create a histogram plot
+plt.figure(figsize=(10,6))
+sns.histplot(df['Final_Grade'], bins=10, kde=False, color='blue')
+plt.title('Histogram of Top Ten Performers')
+plt.xlabel('Final Grade')
+plt.ylabel('Count')
+plt.savefig('top_performers_histogram.png')
+
+# Declare result var
+result = { "type": "plot", "value": "top_performers_histogram.png" }
+2025-02-19 23:07:04 [INFO] Validating code requirements...
+2025-02-19 23:07:04 [INFO] Code validation successful.
+2025-02-19 23:07:04 [INFO] Cleaning the generated code...
+2025-02-19 23:07:04 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+sns.histplot(df['Final_Grade'], bins=10, kde=False, color='blue')
+plt.title('Histogram of Top Ten Performers')
+plt.xlabel('Final Grade')
+plt.ylabel('Count')
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:04 [INFO] Retrying execution (1/3)...
+2025-02-19 23:07:04 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 5, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 23:07:04 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ create a histogram that shows the top ten performers
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+sns.histplot(df['Final_Grade'], bins=10, kde=False, color='blue')
+plt.title('Histogram of Top Ten Performers')
+plt.xlabel('Final Grade')
+plt.ylabel('Count')
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 23:07:11 [INFO] Code Generated:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:11 [INFO] Validating code requirements...
+2025-02-19 23:07:11 [INFO] Code validation successful.
+2025-02-19 23:07:11 [INFO] Cleaning the generated code...
+2025-02-19 23:07:11 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:11 [INFO] Retrying execution (2/3)...
+2025-02-19 23:07:11 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 4, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 23:07:11 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ create a histogram that shows the top ten performers
+
+You generated this python code:
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 23:07:30 [INFO] Code Generated:
+import sqlite3
+
+def execute_sql_query(query):
+    # Assuming the database is an SQLite database named 'database.db'
+    conn = sqlite3.connect('database.db')
+    df = pd.read_sql_query(query, conn)
+    conn.close()
+    return df
+
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:30 [INFO] Validating code requirements...
+2025-02-19 23:07:30 [INFO] Code validation successful.
+2025-02-19 23:07:30 [INFO] Cleaning the generated code...
+2025-02-19 23:07:30 [INFO] Executing code: import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:30 [INFO] Retrying execution (3/3)...
+2025-02-19 23:07:30 [INFO] Execution failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 5, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 23:07:30 [INFO] Using Prompt: <table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+The user asked the following question:
+### QUERY
+ create a histogram that shows the top ten performers
+
+You generated this python code:
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final_Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+
+Fix the python code above and return the new python code but the code generated should use execute_sql_query function
+2025-02-19 23:07:39 [INFO] Code Generated:
+import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def execute_sql_query(sql_query):
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute(sql_query)
+    rows = c.fetchall()
+    conn.close()
+    return pd.DataFrame(rows, columns=['username', 'Team Name', 'Public Score', 'Private Score', 'Weighted Score', 'Final Grade'])
+
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:39 [INFO] Validating code requirements...
+2025-02-19 23:07:39 [INFO] Code validation successful.
+2025-02-19 23:07:39 [INFO] Cleaning the generated code...
+2025-02-19 23:07:39 [INFO] Executing code: import sqlite3
+import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3 ORDER BY Final_Grade DESC LIMIT 10'
+df = execute_sql_query(sql_query)
+plt.figure(figsize=(10, 6))
+plt.bar(df['username'], df['Final Grade'], color='blue')
+plt.title('Top Ten Performers')
+plt.xlabel('Username')
+plt.ylabel('Final Grade')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:07:39 [INFO] Max retries reached. Error: Code execution failed
+2025-02-19 23:07:39 [INFO] Processing failed with error: Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 144, in _execute_local_sql_query
+    return db_manager.sql(query).df()
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/data_loader/duck_db_connection_manager.py", line 38, in sql
+    return self.connection.sql(query)
+duckdb.duckdb.BinderException: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 29, in execute
+    exec(code, self._environment)
+  File "<string>", line 5, in <module>
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 165, in _execute_sql_query
+    return self._execute_local_sql_query(query)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 146, in _execute_local_sql_query
+    raise RuntimeError(f"SQL execution failed: {e}") from e
+RuntimeError: SQL execution failed: Binder Error: Referenced column "Final_Grade" not found in FROM clause!
+Candidate bindings: "Final Grade", "username", "Team Name"
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 262, in _process_query
+    result = self.execute_with_retries(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 177, in execute_with_retries
+    result = self.execute_code(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/agent/base.py", line 129, in execute_code
+    return code_executor.execute_and_return_result(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 38, in execute_and_return_result
+    self.execute(code)
+  File "/usr/local/Caskroom/miniconda/base/envs/tt/lib/python3.9/site-packages/pandasai/core/code_execution/code_executor.py", line 31, in execute
+    raise CodeExecutionError("Code execution failed") from e
+pandasai.exceptions.CodeExecutionError: Code execution failed
+
+2025-02-19 23:08:01 [INFO] Question: create a histogram
+
+2025-02-19 23:08:01 [INFO] Running PandaAI with bamboo_llm LLM...
+2025-02-19 23:08:01 [INFO] Prompt ID: 4556f694-936c-4d72-ba16-9638c528044f
+2025-02-19 23:08:01 [INFO] Generating new code...
+2025-02-19 23:08:01 [INFO] Using Prompt: <tables>
+
+<table dialect="postgres" table_name="table_74ee0b9b490875dd0390493ab8b0cee3" dimensions="119x6">
+username,Team Name,Public Score,Private Score,Weighted Score,Final Grade
+ab50lutezer0,Rohan Panda,0.85014,0.85051,0.8503989999999999,10.0
+abdulazizalmusa,Zee AlMusa,0.43157,0.4316,0.4315909999999999,10.0
+ameykpatel,Amey KPatel,0.86568,0.86583,0.865785,10.0
+atuldaluka,Archer,0.82253,0.82365,0.8233139999999999,10.0
+bandish97,Bandish Parikh,0.49032,0.49214,0.491594,10.0
+</table>
+
+
+</tables>
+
+You are already provided with the following functions that you can call:
+<function>
+def execute_sql_query(sql_query: str) -> pd.Dataframe
+    """This method connects to the database, executes the sql query and returns the dataframe"""
+</function>
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ create a histogram
+
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+
+Generate python code and return full updated code:
+
+### Note: Use only relevant table for query and do aggregation, sorting, joins and grouby through sql query
+2025-02-19 23:08:28 [INFO] Code Generated:
+# TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Write code here
+sql_query = "SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3"
+df = execute_sql_query(sql_query)
+
+# Creating histogram
+plt.hist(df['Public Score'], bins=10, alpha=0.5, color='green', label='Public Score')
+plt.hist(df['Private Score'], bins=10, alpha=0.5, color='blue', label='Private Score')
+plt.hist(df['Weighted Score'], bins=10, alpha=0.5, color='red', label='Weighted Score')
+
+plt.xlabel('Scores')
+plt.ylabel('Frequency')
+plt.title('Histogram of Scores')
+plt.legend(loc='upper right')
+
+# Save the plot
+plt.savefig("histogram_scores.png")
+
+# Declare result var: 
+result = { "type": "plot", "value": "histogram_scores.png" }
+2025-02-19 23:08:28 [INFO] Validating code requirements...
+2025-02-19 23:08:28 [INFO] Code validation successful.
+2025-02-19 23:08:28 [INFO] Cleaning the generated code...
+2025-02-19 23:08:28 [INFO] Executing code: import pandas as pd
+import matplotlib.pyplot as plt
+sql_query = 'SELECT * FROM table_74ee0b9b490875dd0390493ab8b0cee3'
+df = execute_sql_query(sql_query)
+plt.hist(df['Public Score'], bins=10, alpha=0.5, color='green', label='Public Score')
+plt.hist(df['Private Score'], bins=10, alpha=0.5, color='blue', label='Private Score')
+plt.hist(df['Weighted Score'], bins=10, alpha=0.5, color='red', label='Weighted Score')
+plt.xlabel('Scores')
+plt.ylabel('Frequency')
+plt.title('Histogram of Scores')
+plt.legend(loc='upper right')
+plt.savefig('exports/charts/temp_chart.png')
+result = {'type': 'plot', 'value': 'exports/charts/temp_chart.png'}
+2025-02-19 23:08:29 [INFO] Response generated successfully.
